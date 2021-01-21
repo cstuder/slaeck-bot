@@ -49,19 +49,19 @@ foreach ($h3s as $entry) {
 // Response zurückliefern
 switch (count($results)) {
     case 0:
-        $gefunden = 'Keine Einträge';
+        $gefunden = 'Nüt';
         break;
 
     case 1:
-        $gefunden = 'Ein Eintrag';
+        $gefunden = 'Ei Iitrag';
         break;
 
     default:
-        $gefunden = count($results) . ' Einträge';
+        $gefunden = count($results) . ' Iiträg';
         break;
 }
 
-$gefundentext = $gefunden . " gefunden für `{$word}` auf <$url|berndeutsch.ch>";
+$gefundentext = $gefunden . " gfunde für `{$word}` uf <$url|berndeutsch.ch>";
 
 $resultlist = '';
 foreach ($results as $result) {
@@ -70,6 +70,7 @@ foreach ($results as $result) {
 
 $response = [
     'response_type' => 'in_channel',
+    'text' => $gefundentext,
     'blocks' => [
         [
             'type' => 'section',
@@ -82,7 +83,7 @@ $response = [
             'type' => 'section',
             'text' => [
                 'type' => 'mrkdwn',
-                'text' => $resultlist,
+                'text' => empty($resultlist) ? ' ' : $resultlist,
             ],
         ],
     ],
