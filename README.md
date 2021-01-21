@@ -35,6 +35,8 @@ Dokumentation Slash Commands: <https://api.slack.com/interactivity/slash-command
 
 `composer run deploy-LIVE`
 
+Keine Test-Instanz vorhanden.
+
 ## Credits
 
 Programmiert von [Christian Studer](mailto:cstuder@existenz.ch) zur Verwendung im internen [Aare.guru](Aare.guru)-Slackkanal.
