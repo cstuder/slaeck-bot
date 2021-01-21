@@ -61,15 +61,14 @@ switch (count($results)) {
         break;
 }
 
-$gefundentext = $gefunden . ' gefunden auf <$url|berndeutsch.ch>';
+$gefundentext = $gefunden . " gefunden für `{$word}` auf <$url|berndeutsch.ch>";
 
 $resultlist = '';
 foreach ($results as $result) {
-    $resultlist .= "- <{$result['url']}|{$result['text']}>: {$result['translation']}\\n";
+    $resultlist .= "• <{$result['url']}|{$result['text']}>: {$result['translation']}\n";
 }
 
 $response = [
-    'text' => $gefundentext,
     'blocks' => [
         [
             'type' => 'section',
