@@ -8,8 +8,8 @@ Inoffizieller Släck-Bot für <https://www.berndeutsch.ch>
 
 - Hört auf Slash-Command `/bärndütsch`.
 - Benutzt [Requests](https://requests.ryanmccue.info) um die Suche bei Berndeutsch.ch anzuwerfen.
-- Parset die Antwortseite und nimmt die ersten drei Übersetzungen zur Hand.
-- Benutzt [slack-php-api](https://github.com/jolicode/slack-php-api) um eine Response nach Slack zu posten.
+- Parset die Antwortseite.
+- Gibt alle gefundenen Übersetzungen zurück.
 
 ## Installation
 
@@ -22,6 +22,8 @@ Dokumentation Slash Commands: <https://api.slack.com/interactivity/slash-command
   - Request URL: <https://slaeck-bot.existenz.ch/api/slashcommand.php>
   - Short Description: "Übersetzt mal das hie."
   - Usage Hint: "Wort"
+- Bot kreieren wenn notwendig.
+- App installieren.
 
 ## Entwicklung
 
