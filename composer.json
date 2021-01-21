@@ -9,7 +9,12 @@
       "email": "cstuder@existenz.ch"
     }
   ],
-  "require": {},
+  "require": {
+    "rmccue/requests": "^1.7",
+    "symfony/http-client": "^5.2",
+    "nyholm/psr7": "^1.3",
+    "jolicode/slack-php-api": "^4.0"
+  },
   "scripts": {
     "serve": "PHP_CLI_SERVER_WORKERS=10 php -S localhost:8000 -t www",
     "deploy-LIVE": "git push . main:LIVE && git push origin LIVE"
