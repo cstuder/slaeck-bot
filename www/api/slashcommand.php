@@ -2,6 +2,8 @@
 
 /**
  * Nimmt Slashcommand /bärndütsch entgegen und antwortet
+ * 
+ * Simples prozedurales Skript, reicht vollkommen.
  */
 
 // Initialisierung
@@ -28,15 +30,14 @@ if (empty($command) || empty($word)) {
 
 // Query absetzen
 $url = QUERY_URL . urlencode($word);
-$raw = Requests::get($url);
+$raw = Requests::get($url)->body;
 
 // Übersetzungen finden
 libxml_use_internal_errors(true); // DOMDocument schlucht HTML5 nicht
 $dom = new DOMDocument();
-$dom->loadHTML($raw->body);
+$dom->loadHTML($raw);
 
 $results = [];
-
 $h3s = $dom->getElementsByTagName('h3');
 foreach ($h3s as $entry) {
     $results[] = [
