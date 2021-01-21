@@ -10,6 +10,9 @@
 require_once __DIR__ . '/../../vendor/autoload.php';
 define('QUERY_URL', 'https://www.berndeutsch.ch/search?q=');
 header('Content-Type: application/json');
+$requestsoptions = [
+    'useragent' => 'slaek-bot.existenz.ch'
+];
 
 // Command entgegen nehmen
 // Notiz: Wir kümmern uns nicht darum, woher der Request kommt. Soll doch diesen Endpoint hier brauchen wer will.
@@ -30,7 +33,7 @@ if (empty($command) || empty($word)) {
 
 // Query absetzen
 $url = QUERY_URL . urlencode($word);
-$raw = Requests::get($url)->body;
+$raw = Requests::get($url, [], $requestsoptions)->body;
 
 // Übersetzungen finden
 libxml_use_internal_errors(true); // DOMDocument schlucht HTML5 nicht
