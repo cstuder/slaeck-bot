@@ -16,7 +16,7 @@ $command = $_POST['command'] ?? null;
 $word = $_POST['text'] ?? null;
 
 // Leichte Validation
-if (is_null($command) || is_null($word)) {
+if (empty($command) || empty($word)) {
     $payload = [
         'response_type' => 'ephemeral',
         'text' => 'Häh?'
@@ -69,6 +69,7 @@ foreach ($results as $result) {
 }
 
 $response = [
+    'response_type' => 'in_channel',
     'blocks' => [
         [
             'type' => 'section',
