@@ -1,0 +1,17 @@
+{
+  "name": "cstuder/slaeck-bot",
+  "description": "Inoffizieller Släck-Bot für berndeutsch.ch",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Christian Studer",
+      "email": "cstuder@existenz.ch"
+    }
+  ],
+  "require": {},
+  "scripts": {
+    "serve": "PHP_CLI_SERVER_WORKERS=10 php -S localhost:8000 -t www",
+    "deploy-LIVE": "git push . main:LIVE && git push origin LIVE"
+  }
+}
