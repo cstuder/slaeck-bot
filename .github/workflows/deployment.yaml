@@ -1,0 +1,39 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - LIVE
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: /tmp/composer-cache
+          key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+      - name: Composer install
+        uses: php-actions/composer@v5
+
+      - name: rsync
+        uses: burnett01/rsync-deployments@4.1
+        with:
+          switches: -avzr
+          remote_path: /home/existenz/www/existenz_slaeck-bot
+          remote_host: existenz.ch
+          remote_user: existenz
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Done
+        uses: cstuder/apprise-ga@master
+        with:
+          title: "slaeck-bot deployed"
+          message: "Commit by {{ head_commit.author.name }}: {{ head_commit.message | truncate(128) }} ({{ head_commit.id[0:7] }})"
+        env:
+          APPRISE_URL: ${{ secrets.APPRISE_URL }}
