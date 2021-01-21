@@ -18,12 +18,12 @@ TODO.
 ## Entwicklung
 
 - Mindestens PHP 7.4 installieren, [Composer](https://getcomposer.org) installieren.
-- `composer run-script serve`
+- `composer run serve`
 - Öffne <http://localhost:8000>
 
 ## Deployment
 
-`composer run-script deploy-LIVE`
+`composer run deploy-LIVE`
 
 ## Credits
 

@@ -24,7 +24,7 @@ jobs:
       - name: rsync
         uses: burnett01/rsync-deployments@4.1
         with:
-          switches: -avzr
+          switches: -avzr --delete --exclude .git --exclude output.log
           remote_path: /home/existenz/www/existenz_slaeck-bot
           remote_host: existenz.ch
           remote_user: existenz
