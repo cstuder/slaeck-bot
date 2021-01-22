@@ -43,6 +43,8 @@ Programmiert von [Christian Studer](mailto:cstuder@existenz.ch) zur Verwendung i
 
 Keine offizielle Verbindung zu [berndeutsch.ch](https://www.berndeutsch.ch), nur eine ideelle.
 
+Logo von [Kaspar Allenbach](https://kaspar-allenbach.ch).
+
 Item.
 
 ## Lizenz
