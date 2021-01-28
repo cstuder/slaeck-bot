@@ -36,6 +36,13 @@ class Parse
         return $results;
     }
 
+    public static function additionalResultsOnOtherPages(String $raw): bool
+    {
+        // TODO implement this
+
+        return false;
+    }
+
     public static function parseRawRandom(String $raw): array
     {
         $word = [];

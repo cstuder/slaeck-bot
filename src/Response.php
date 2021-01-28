@@ -25,6 +25,8 @@ class Response
                 break;
         }
 
+        // TODO Check for additionalResultsOnOtherPages
+
         $searchUrl = Fetch::getSearchUrl($query);
         $gefundentext = $gefunden . " gfunde für `{$query}` uf <$searchUrl|berndeutsch.ch>";
 
