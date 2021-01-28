@@ -24,23 +24,22 @@ switch ($command) {
         $response = SlaeckBot\Response::generateError();
         break;
 
-    case "/berndeutsch":
-    case "/baernduetsch":
     case "/bärndütsch":
         // Validierung
-        if (empty(trim($text))) {
+        $trimmedText = trim($text);
+        if (empty($trimmedText)) {
             $response = SlaeckBot\Response::generateError();
             break;
         }
 
         // Query absetzen
-        $raw = SlaeckBot\Fetch::search($text);
+        $raw = SlaeckBot\Fetch::search($trimmedText);
 
         // Übersetzungen finden
         $results = SlaeckBot\Parse::parseRawSearch($raw);
 
         // Response zurückliefern
-        $response = SlaeckBot\Response::generateSearchResults($text, $results);
+        $response = SlaeckBot\Response::generateSearchResults($trimmedText, $results);
         break;
 }
 

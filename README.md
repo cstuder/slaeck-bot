@@ -6,9 +6,9 @@ Inoffizieller Släck-Bot für <https://www.berndeutsch.ch>
 
 ## Struktur
 
-- Hört auf Slash-Command `/bärndütsch`.
+- Hört auf Slash-Command `/bärndütsch` in der Datei [slashcommand.php](www/api/slashcommand.php)
 - Benutzt [Requests](https://requests.ryanmccue.info) um die Suche bei Berndeutsch.ch anzuwerfen.
-- Parset die Antwortseite.
+- Parst die Antwortseite.
 - Gibt alle gefundenen Übersetzungen zurück.
 
 ## Installation
@@ -16,13 +16,13 @@ Inoffizieller Släck-Bot für <https://www.berndeutsch.ch>
 Dokumentation Slash Commands: <https://api.slack.com/interactivity/slash-commands>
 
 - Auf Slack.com einloggen und neue App erstellen: <https://api.slack.com/apps>
-- "Slash Commands" erstellen: <https://api.slack.com/apps/A01L4135ZME/slash-commands?>
+- "Slash Commands" erstellen.
 - Neues Kommando:
   - Command: `/bärndütsch`
   - Request URL: <https://slaeck-bot.existenz.ch/api/slashcommand.php>
   - Short Description: "Übersetzt mal das hie."
   - Usage Hint: "Wort"
-- Bot kreieren wenn notwendig.
+- Bot kreieren wenn notwendig. In "App Home" den "Messages Tab" abstellen.
 - App installieren.
 
 ## Entwicklung
@@ -42,6 +42,8 @@ Keine Test-Instanz vorhanden.
 Programmiert von [Christian Studer](mailto:cstuder@existenz.ch) zur Verwendung im internen [Aare.guru](Aare.guru)-Slackkanal.
 
 Keine offizielle Verbindung zu [berndeutsch.ch](https://www.berndeutsch.ch), nur eine ideelle.
+
+Verwendung von [berndeutsch.ch](https://www.berndeutsch.ch) mit freundlicher Genehmigung des Webmasters.
 
 Logo von [Kaspar Allenbach](https://kaspar-allenbach.ch).
 
