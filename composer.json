@@ -9,6 +9,11 @@
       "email": "cstuder@existenz.ch"
     }
   ],
+  "autoload": {
+    "psr-4": {
+      "cstuder\\SlaeckBot\\": "src/"
+    }
+  },
   "require": {
     "rmccue/requests": "^1.7"
   },

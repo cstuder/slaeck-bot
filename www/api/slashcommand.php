@@ -8,47 +8,31 @@
 
 // Initialisierung
 require_once __DIR__ . '/../../vendor/autoload.php';
-define('QUERY_URL', 'https://www.berndeutsch.ch/search?q=');
-header('Content-Type: application/json');
-$requestsoptions = [
-    'useragent' => 'slaek-bot.existenz.ch'
-];
+
+use cstuder\SlaeckBot;
 
 // Command entgegen nehmen
 // Notiz: Wir kümmern uns nicht darum, woher der Request kommt. Soll doch diesen Endpoint hier brauchen wer will.
 
 $command = $_POST['command'] ?? null;
-$word = $_POST['text'] ?? null;
+$text = $_POST['text'] ?? null;
 
 // Leichte Validation
-if (empty($command) || empty($word)) {
+if (empty($command)) {
     $payload = [
         'response_type' => 'ephemeral',
         'text' => 'Häh?'
     ];
 
-    echo json_encode($payload);
+    SlaeckBot\Output::json($payload);
     die(1);
 }
 
 // Query absetzen
-$url = QUERY_URL . urlencode($word);
-$raw = Requests::get($url, [], $requestsoptions)->body;
+$raw = SlaeckBot\Fetch::search($text);
 
 // Übersetzungen finden
-libxml_use_internal_errors(true); // DOMDocument schlucht HTML5 nicht
-$dom = new DOMDocument();
-$dom->loadHTML($raw);
-
-$results = [];
-$h3s = $dom->getElementsByTagName('h3');
-foreach ($h3s as $entry) {
-    $results[] = [
-        'text' => $entry->textContent,
-        'url' => $entry->getElementsByTagName('a')->item(0)->getAttribute('href'),
-        'translation' => $entry->nextSibling->nextSibling->textContent,
-    ];
-}
+$results = SlaeckBot\Parse::parseRawSearch($raw);
 
 // Response zurückliefern
 switch (count($results)) {
@@ -65,14 +49,15 @@ switch (count($results)) {
         break;
 }
 
-$gefundentext = $gefunden . " gfunde für `{$word}` uf <$url|berndeutsch.ch>";
+$searchUrl = SlaeckBot\Fetch::getSearchUrl($text);
+$gefundentext = $gefunden . " gfunde für `{$text}` uf <$searchUrl|berndeutsch.ch>";
 
 $resultlist = '';
 foreach ($results as $result) {
     $resultlist .= "• <{$result['url']}|{$result['text']}>: {$result['translation']}\n";
 }
 
-$response = [
+$payload = [
     'response_type' => 'in_channel',
     'text' => $gefundentext,
     'blocks' => [
@@ -93,4 +78,5 @@ $response = [
     ],
 ];
 
-echo json_encode($response);
+// Antwort liefern
+SlaeckBot\Output::json($payload);
