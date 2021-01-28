@@ -17,66 +17,32 @@ use cstuder\SlaeckBot;
 $command = $_POST['command'] ?? null;
 $text = $_POST['text'] ?? null;
 
-// Leichte Validation
-if (empty($command)) {
-    $payload = [
-        'response_type' => 'ephemeral',
-        'text' => 'Häh?'
-    ];
-
-    SlaeckBot\Output::json($payload);
-    die(1);
-}
-
-// Query absetzen
-$raw = SlaeckBot\Fetch::search($text);
-
-// Übersetzungen finden
-$results = SlaeckBot\Parse::parseRawSearch($raw);
-
-// Response zurückliefern
-switch (count($results)) {
-    case 0:
-        $gefunden = 'Nüt';
-        break;
-
-    case 1:
-        $gefunden = 'Ei Iitrag';
-        break;
-
+// Command ausführen
+$response = [];
+switch ($command) {
     default:
-        $gefunden = count($results) . ' Iiträg';
+        $response = SlaeckBot\Response::generateError();
+        break;
+
+    case "/berndeutsch":
+    case "/baernduetsch":
+    case "/bärndütsch":
+        // Validierung
+        if (empty(trim($text))) {
+            $response = SlaeckBot\Response::generateError();
+            break;
+        }
+
+        // Query absetzen
+        $raw = SlaeckBot\Fetch::search($text);
+
+        // Übersetzungen finden
+        $results = SlaeckBot\Parse::parseRawSearch($raw);
+
+        // Response zurückliefern
+        $response = SlaeckBot\Response::generateSearchResults($text, $results);
         break;
 }
-
-$searchUrl = SlaeckBot\Fetch::getSearchUrl($text);
-$gefundentext = $gefunden . " gfunde für `{$text}` uf <$searchUrl|berndeutsch.ch>";
-
-$resultlist = '';
-foreach ($results as $result) {
-    $resultlist .= "• <{$result['url']}|{$result['text']}>: {$result['translation']}\n";
-}
-
-$payload = [
-    'response_type' => 'in_channel',
-    'text' => $gefundentext,
-    'blocks' => [
-        [
-            'type' => 'section',
-            'text' => [
-                'type' => 'mrkdwn',
-                'text' => $gefundentext,
-            ],
-        ],
-        [
-            'type' => 'section',
-            'text' => [
-                'type' => 'mrkdwn',
-                'text' => empty($resultlist) ? ' ' : $resultlist,
-            ],
-        ],
-    ],
-];
 
 // Antwort liefern
-SlaeckBot\Output::json($payload);
+SlaeckBot\Output::json($response);
