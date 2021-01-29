@@ -15,4 +15,9 @@ $postdata = [
 
 $response = Requests::post($url, [], $postdata);
 
+if (json_decode($response->body, true) == null) {
+    var_dump($response);
+    die(1);
+}
+
 echo (json_encode(json_decode($response->body), JSON_PRETTY_PRINT));

@@ -9,11 +9,20 @@
       "email": "cstuder@existenz.ch"
     }
   ],
+  "autoload": {
+    "psr-4": {
+      "cstuder\\SlaeckBot\\": "src/"
+    }
+  },
   "require": {
     "rmccue/requests": "^1.7"
   },
   "scripts": {
     "serve": "PHP_CLI_SERVER_WORKERS=10 php -S localhost:8000 -t www",
-    "deploy-LIVE": "git push . main:LIVE && git push origin LIVE"
+    "deploy-LIVE": "git push . main:LIVE && git push origin LIVE",
+    "test": "vendor/bin/phpunit"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
   }
 }

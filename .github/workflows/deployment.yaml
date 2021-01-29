@@ -20,6 +20,8 @@ jobs:
 
       - name: Composer install
         uses: php-actions/composer@v5
+        with:
+          dev: no
 
       - name: rsync
         uses: burnett01/rsync-deployments@4.1
