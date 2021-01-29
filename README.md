@@ -4,6 +4,8 @@ Inoffizieller Släck-Bot für <https://www.berndeutsch.ch>
 
 `LIVE`: <https://slaeck-bot.existenz.ch>
 
+![PHPUnit tests](https://github.com/cstuder/slaeck-bot/workflows/PHPUnit%20tests/badge.svg)
+
 ## Struktur
 
 - Hört auf Slash-Command `/bärndütsch` in der Datei [slashcommand.php](www/api/slashcommand.php)
