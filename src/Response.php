@@ -6,6 +6,9 @@ namespace cstuder\SlaeckBot;
 
 /**
  * Generiert Slack Blocks Objekte zur Antwort
+ * 
+ * @link https://api.slack.com/block-kit
+ * @link https://app.slack.com/block-kit-builder
  */
 class Response
 {
