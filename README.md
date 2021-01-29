@@ -21,7 +21,7 @@ Dokumentation Slash Commands: <https://api.slack.com/interactivity/slash-command
 - "Slash Commands" erstellen.
 - Neues Kommando:
   - Command: `/bärndütsch`
-  - Request URL: <https://slaeck-bot.existenz.ch/api/slashcommand.php>
+  - Request URL: <https://slaeck-bot.existenz.ch/api/slashcommand>
   - Short Description: "Übersetzt mal das hie."
   - Usage Hint: "Wort"
 - Bot kreieren wenn notwendig. In "App Home" den "Messages Tab" abstellen.
