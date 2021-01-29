@@ -31,6 +31,16 @@ Dokumentation Slash Commands: <https://api.slack.com/interactivity/slash-command
 - `composer run serve`
 - Öffne <http://localhost:8000>
 
+## Testen
+
+`composer run test`
+
+Hinweis: Benutzt die Webseite berndeutsch.ch als Quelle für Testdaten.
+
+Vorteil: Wenn das Markup oder die Struktur der Webseite ändert, schlagen die Tests fehl.
+
+Nachteil: Bei Nicht-Erreichbarkeit oder massiven Änderungen am Vokabular schlagen die Tests fehl.
+
 ## Deployment
 
 `composer run deploy-LIVE`
