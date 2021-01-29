@@ -9,7 +9,7 @@ namespace cstuder\SlaeckBot;
  */
 class Response
 {
-    public static function generateSearchResults(String $query, array $results): array
+    public static function generateSearchResults(String $query, array $results, bool $additionalResults): array
     {
         switch (count($results)) {
             case 0:
@@ -21,14 +21,16 @@ class Response
                 break;
 
             default:
-                $gefunden = count($results) . ' Iiträg';
+                if ($additionalResults) {
+                    $gefunden = 'No vil meh Iiträg';
+                } else {
+                    $gefunden = count($results) . ' Iiträg';
+                }
                 break;
         }
 
-        // TODO Check for additionalResultsOnOtherPages
-
         $searchUrl = Fetch::getSearchUrl($query);
-        $gefundentext = $gefunden . " gfunde für `{$query}` uf <$searchUrl|berndeutsch.ch>";
+        $gefundentext = $gefunden . " gfunde für _{$query}_ uf <$searchUrl|berndeutsch.ch>";
 
         $resultlist = '';
         foreach ($results as $result) {

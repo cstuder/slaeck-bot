@@ -39,9 +39,10 @@ try {
 
             // Übersetzungen finden
             $results = SlaeckBot\Parse::parseRawSearch($raw);
+            $additionalResults = SlaeckBot\Parse::additionalResultsOnOtherPages($raw);
 
             // Response zurückliefern
-            $response = SlaeckBot\Response::generateSearchResults($trimmedText, $results);
+            $response = SlaeckBot\Response::generateSearchResults($trimmedText, $results, $additionalResults);
             break;
     }
 } catch (Exception $e) {

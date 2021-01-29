@@ -38,9 +38,7 @@ class Parse
 
     public static function additionalResultsOnOtherPages(String $raw): bool
     {
-        // TODO implement this
-
-        return false;
+        return strpos($raw, '<ul class="pagination"') != false;
     }
 
     public static function parseRawRandom(String $raw): array
