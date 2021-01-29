@@ -59,11 +59,21 @@ class Response
         return $response;
     }
 
-    public static function generateError(): array
+    public static function generateUserError(): array
     {
         $response = [
             'response_type' => 'ephemeral',
-            'text' => 'Häh?'
+            'text' => 'Häh? Ha di itz grad nid verstande.'
+        ];
+
+        return $response;
+    }
+
+    public static function generateInternalError(): array
+    {
+        $response = [
+            'response_type' => 'ephemeral',
+            'text' => 'Sorry, interne Fähler, probiers nomau.'
         ];
 
         return $response;

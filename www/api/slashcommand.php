@@ -19,28 +19,33 @@ $text = $_POST['text'] ?? null;
 
 // Command ausführen
 $response = [];
-switch ($command) {
-    default:
-        $response = SlaeckBot\Response::generateError();
-        break;
 
-    case "/bärndütsch":
-        // Validierung
-        $trimmedText = trim($text);
-        if (empty($trimmedText)) {
-            $response = SlaeckBot\Response::generateError();
+try {
+    switch ($command) {
+        default:
+            $response = SlaeckBot\Response::generateUserError();
             break;
-        }
 
-        // Query absetzen
-        $raw = SlaeckBot\Fetch::search($trimmedText);
+        case "/bärndütsch":
+            // Validierung
+            $trimmedText = trim($text);
+            if (empty($trimmedText)) {
+                $response = SlaeckBot\Response::generateUserError();
+                break;
+            }
 
-        // Übersetzungen finden
-        $results = SlaeckBot\Parse::parseRawSearch($raw);
+            // Query absetzen
+            $raw = SlaeckBot\Fetch::search($trimmedText);
 
-        // Response zurückliefern
-        $response = SlaeckBot\Response::generateSearchResults($trimmedText, $results);
-        break;
+            // Übersetzungen finden
+            $results = SlaeckBot\Parse::parseRawSearch($raw);
+
+            // Response zurückliefern
+            $response = SlaeckBot\Response::generateSearchResults($trimmedText, $results);
+            break;
+    }
+} catch (Exception $e) {
+    $response = SlaeckBot\Response::generateInternalError();
 }
 
 // Antwort liefern
